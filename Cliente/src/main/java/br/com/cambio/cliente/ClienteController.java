@@ -15,8 +15,8 @@ public class ClienteController {
     }
 
     @PostMapping()
-    public Cliente salvar(@RequestBody Cliente funcionario) {
-        return clienteService.salvar(funcionario);
+    public Cliente salvar(@RequestBody Cliente cliente) {
+        return clienteService.salvar(cliente);
     }
 
     @GetMapping()
