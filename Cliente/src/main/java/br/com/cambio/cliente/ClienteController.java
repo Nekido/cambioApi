@@ -29,6 +29,11 @@ public class ClienteController {
         return clienteService.buscarPorId(id);
     }
 
+    @GetMapping("/cpf/{cpf}")
+    public Cliente buscarPorCpf(@PathVariable String cpf) {
+        return clienteService.buscarPorCpf(cpf);
+    }
+
     @DeleteMapping("/{id}")
     public void deletarPorId(@PathVariable Long id) {
         clienteService.deletarPorID(id);
