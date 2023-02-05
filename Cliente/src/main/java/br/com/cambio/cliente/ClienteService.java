@@ -10,12 +10,12 @@ public class ClienteService {
 
     private final ClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository funcionarioRepository) {
-        this.clienteRepository = funcionarioRepository;
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
 
-    public Cliente salvar(Cliente funcionario) {
-        return clienteRepository.save(funcionario);
+    public Cliente salvar(Cliente cliente) {
+        return clienteRepository.save(cliente);
     }
 
     public List<Cliente> listar() {
