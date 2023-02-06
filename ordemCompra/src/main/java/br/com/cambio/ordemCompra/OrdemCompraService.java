@@ -19,10 +19,7 @@ import java.util.Optional;
 
             ordemCompraRepository . save ( ordemCompra );
             return ordemCompra;
-        }
 
-        public List< OrdemCompra > listarCompra () {
-            return ( List < OrdemCompra> ) ordemCompraRepository . listarCompra ();
         }
         public Optional<OrdemCompra> listarCompraPorId (Long  id ) {
             return  ordemCompraRepository . findById(id);

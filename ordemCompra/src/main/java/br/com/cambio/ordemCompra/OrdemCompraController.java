@@ -18,10 +18,6 @@ public class OrdemCompraController {
             return ordemCompraService.saveCompra(ordemCompra);
         }
 
-        @GetMapping
-        public List<OrdemCompra> listarCompra() {
-            return ordemCompraService.listarCompra();
-        }
 
     }
 
