@@ -1,9 +1,12 @@
 package br.com.cambio.cliente;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -26,15 +29,14 @@ public class ClienteService {
         return clienteRepository.findById(id).orElse(null);
     }
 
-    public Cliente buscarPorCpf(@PathVariable String cpf) {
-        Cliente resultadoBuscaCpf = new Cliente();
+    public Optional<Cliente> buscarPorCpf(@PathVariable String cpf) {
         List<Cliente> listaClientes = (List<Cliente>) clienteRepository.findAll();
-        for (Cliente c : listaClientes) {
-            if (c.getCpf().equals(cpf)) {
-                resultadoBuscaCpf = c;
-            }
+        Optional<Cliente> resultado = listaClientes.stream().filter(c -> c.getCpf().equals(cpf)).findFirst();
+        if (resultado.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe cliente com este CPF");
+        } else {
+            return resultado;
         }
-        return resultadoBuscaCpf;
     }
 
     public void deletarPorID(Long id) {
