@@ -3,6 +3,7 @@ package br.com.cambio.cliente;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/clientes")
@@ -30,7 +31,7 @@ public class ClienteController {
     }
 
     @GetMapping("/cpf/{cpf}")
-    public Cliente buscarPorCpf(@PathVariable String cpf) {
+    public Optional<Cliente> buscarPorCpf(@PathVariable String cpf) {
         return clienteService.buscarPorCpf(cpf);
     }
 
