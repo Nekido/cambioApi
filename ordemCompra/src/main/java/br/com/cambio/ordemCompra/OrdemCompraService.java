@@ -1,5 +1,6 @@
 package br.com.cambio.ordemCompra;
 
+import br.com.cotacao.EconomiaService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Optional;
     @Service
     public class OrdemCompraService {
         private final OrdemCompraRepository ordemCompraRepository;
+
 
         public OrdemCompraService(OrdemCompraRepository ordemCompraRepository) {
             this.ordemCompraRepository = ordemCompraRepository;
