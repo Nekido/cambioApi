@@ -1,8 +1,10 @@
 package br.com.cambio.ordemCompra;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 
 @RestController
 public class OrdemCompraController {
@@ -13,10 +15,16 @@ public class OrdemCompraController {
         this.ordemCompraService = ordemCompraService;
     }
 
-        @PostMapping("/ordemCompra")
-        public OrdemCompra saveCompra(@RequestBody OrdemCompra ordemCompra) {
-            return ordemCompraService.saveCompra(ordemCompra);
-        }
+    @PostMapping("/ordemCompra")
+    public ResponseEntity<OrdemCompra> saveCompra(@RequestBody OrdemCompra ordemCompra) {
+        String clearCpf = ordemCompra.getCpfCliente().replaceAll("[\\.-]", "");
 
+        if (clearCpf.isBlank()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não foi informado um CPF válido");
+        }
+        OrdemCompra compra = ordemCompraService.saveCompra(ordemCompra);
+        return new ResponseEntity<>(compra, HttpStatus.CREATED);
     }
+
+}
 
